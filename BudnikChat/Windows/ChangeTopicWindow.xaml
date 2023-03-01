@@ -1,0 +1,19 @@
+﻿<Window x:Class="BudnikChat.Windows.ChangeTopicWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BudnikChat.Windows"
+        mc:Ignorable="d"
+        Title="Сменить тему" Height="150" Width="200"
+        MinHeight="150" MinWidth="200" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel>
+            <Label Content="Введите тему чата:" Margin="10 0"/>
+            <TextBox Text="{Binding Topic}" FontSize="20"/>
+            <Button x:Name="btnSave" IsDefault="True" Content="Сохранить"
+                    Background="{DynamicResource Active}"
+                    Click="btnSave_Click" Padding="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

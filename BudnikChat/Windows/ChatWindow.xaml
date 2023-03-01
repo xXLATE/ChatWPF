@@ -1,0 +1,64 @@
+﻿<Window x:Class="BudnikChat.Windows.ChatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BudnikChat.Windows"
+        mc:Ignorable="d"
+        Title="Тема: " Height="500" Width="600"
+        MinHeight="500" MinWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="lvEmployees" ItemsSource="{Binding EmployeeChatrooms}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Employee.Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel Grid.Row="1">
+                <Button x:Name="btnAddUser" Content="Добавить..." Margin="1" Click="btnAddUser_Click"/>
+                <Button x:Name="btnChangeTopic" Content="Сменить тему..." Margin="1" Click="btnChangeTopic_Click"/>
+                <Button x:Name="btnLeaveChatroom" Content="Покинуть чат" Margin="1" Click="btnLeaveChatroom_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <ListView x:Name="lvMessages" ItemsSource="{Binding ChatMessages}" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="{Binding Date, StringFormat={}[HH.mm]}"/>
+                        <Run Text="{Binding Employee.Name, StringFormat={}{0}:}"/>
+                        <Run Text="{Binding Message}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbMessage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0"/>
+            <Button x:Name="btnSend" Content="Отправить" Background="{DynamicResource Active}"
+                    Grid.Column="1" VerticalAlignment="Stretch" Margin="1" Padding="30 0" Click="btnSend_Click"/>
+        </Grid>
+    </Grid>
+</Window>
